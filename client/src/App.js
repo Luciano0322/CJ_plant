@@ -44,9 +44,8 @@ const App = () => {
     >
       {
         logEntries.map(entry => (
-          <>
+          <React.Fragment key={entry._id}>
             <Marker
-              key={entry._id}
               latitude={entry.latitude}
               longitude={entry.longitude}
               // offsetLeft={-12} /*需視marker的實際位置再作微調 */
@@ -89,11 +88,12 @@ const App = () => {
                     <h3>{entry.title}</h3>
                     <p>{entry.comments}</p>
                     <small>Visited on: {new Date(entry.visitDate).toLocaleDateString()}</small>
+                    {entry.image && <img src={entry.image} alt={entry.title} />}
                   </div>
                 </Popup>
               ) : null
             }
-          </>
+          </React.Fragment>
         ))
       }
       {
